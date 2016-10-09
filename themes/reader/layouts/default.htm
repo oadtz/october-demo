@@ -1,0 +1,186 @@
+description = "Default layout"
+
+[proBlogCategories]
+categoryPage = "blog"
+
+[proBlogList]
+postsPerPage = 5
+filter_type = "tag"
+filter_value = "feature"
+searchpage = "blog"
+render = "specific"
+specific = "post"
+
+[facebook_page_box]
+hide_cover_photo = 0
+show_friends_faces = 1
+show_page_posts = 0
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} - BeHappyNerd</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Thanapat Pirmphol">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        <!-- =========================
+          FAV AND TOUCH ICONS  
+        ============================== -->
+        <link rel="icon" href="{{ 'assets/images/favicon.ico'|theme }}">
+        <link rel="apple-touch-icon" href="{{ 'assets/images/apple-touch-icon.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ 'assets/images/apple-touch-icon-72x72.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ 'assets/images/apple-touch-icon-114x114.png'|theme }}">
+    
+        <!-- =========================
+           STYLESHEETS 
+        ============================== -->
+        
+        <link href="{{ 'assets/css/style.css'|theme }}" rel="stylesheet">
+    
+        <!--[if lt IE 9]>
+                <script src="{{ 'assets/js/html5shiv.js'|theme }}"></script>
+                <script src="{{ 'assets/js/respond.min.js'|theme }}"></script>
+        <![endif]-->
+        {% styles %}
+    </head>
+    <body>
+        <header class="header">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-24">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="/">
+                                    <img src="{{ 'assets/img/logo.png'|theme }}" alt="Reader">
+                                    <h1>Be Happy Nerd</h1>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Navigation items -->
+                        <div class="col-md-24">
+                            <div class="collapse navbar-collapse main-navigation" id="bs-example-navbar-collapse-1">
+
+                                <ul class="nav navbar-nav">
+                                    {% for category in blogCategories %}
+                                        {% set postCount = category.postCount %}
+                                        <li {% if category.slug == blogCurrentCategorySlug %}class="active"{% endif %}>
+                                            <a href="{{ blogCategoryPage|page({'filter': 'category', 'slug': category.slug }) }}/">{{ category.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                
+
+                                
+                                <!-- SEARCH -->
+                                <form class="search-box navbar-form navbar-right" role="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Click to Search">
+                                    </div><!-- /input-group -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /END FLUID CONTAINER -->
+            </nav>
+        </header>
+        <!-- /END HEADER SECTION  -->
+        
+        
+        <!-- BODY CONTAINER -->
+        <div class="container">
+            <div class="row">
+                <!-- =========================
+                    BLOG SECTION 
+                ============================== -->
+                <div class="col-md-18">
+                
+                {% page %}
+
+                </div>
+                <!-- /END BLOG SECTION -->
+
+                <!-- =========================
+                    RIGHT SIDEBAR 
+                ============================== -->
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    <aside class="right-sidebar">
+                        <!-- Widget Start -->
+                        <div class="widget-popular-article">
+                            <h5>Feature Articles</h5>
+
+                            {% partial "feature_posts" %}                         
+                            
+                        </div>
+                        <!-- Widget End -->
+
+                        <hr class="small">
+            
+                        <!-- Widget Start -->
+                        <div class="widget-follow">
+                            <h5>Follow us</h5>
+
+                            {% component 'facebook_page_box' %}
+                        </div> <!-- end of .widget-subscribe -->
+                        <!-- Widget End -->
+
+                        <!--hr class="small">
+
+                        <div class="widget-ads">
+                            <h5>Advertisements</h5>
+                            <figure>
+                                <img src="images/featured/ad-1.jpg" alt="" class="img-responsive">
+                                <figcaption><a href="#">Advertising Tagline</a></figcaption>
+                            </figure>
+
+                            <figure>
+                                <img src="images/featured/ad-2.jpg" alt="" class="img-responsive">
+                                <figcaption><a href="#">Advertising Tagline 2</a></figcaption>
+                            </figure>
+                        </div--> <!-- end of .widget-ads -->
+                        
+
+                    </aside>
+                </div>
+                <!-- /END RIGHT SIDEBAR -->
+
+
+            </div>
+        </div> <!-- end of .container-fluid -->
+        
+        <!-- =========================
+            FOOTER SECTION 
+        ============================== -->
+        <footer class="footer light">
+        
+            <div class="container">
+                <p class="copyright">Copyright {{ "now"|date('Y') }}, <a href="{{ "home"|page }}">Behappnerd.com</a></p>
+            </div>
+
+        </footer>
+        <!-- /END FOOTER SECTION -->
+        
+        <script src="{{ 'assets/js/script.js'|theme }}"></script>
+        
+        {% framework extras %}
+        {% scripts %}
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
+    </body>
+</html>

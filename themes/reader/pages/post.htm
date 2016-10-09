@@ -1,0 +1,122 @@
+title = "Post"
+url = "/post/:slug"
+layout = "default"
+is_hidden = 0
+
+[proBlogPost]
+slug = ":slug"
+
+[ssbuttonsssb]
+facebook = 1
+twitter = 1
+google+ = 1
+tumblr = 0
+pinterest = 0
+pocket = 1
+reddit = 0
+linkedin = 0
+wordpress = 0
+pinboard = 0
+email = 0
+theme = "flat_web_icon_set_color"
+
+[disqus]
+==
+<div class="blog-style-one">
+        <!-- GENERAL BLOG POST -->
+        <article class="blog-item">
+            <header>
+                <h2 class="title">
+                    {{ post_item.title }}
+                </h2>
+                <div class="meta-info">
+                    {% if author.image %} <img src="{{ author.image }}" alt="avatar" class="thumb" /> {% endif %}
+                    <ul>
+                        <li><a href="{{ 'blog'|page({ filter: 'author', slug: author.login }) }}">{{ author.login }}</a></li>
+                        <li>
+                        {% for category in categories %}
+                            {% if category.id == post_item.categories_id %}
+                                <a href="{{ 'blog'|page({'filter': category.slug,'slug': null }) }}/">{{ category.name }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        </li>
+                        <li>{{ post_item.published_at|date('M d, Y') }}</li>
+                    </ul>
+                </div>
+            </header>
+            
+            {% if post_item.featured_images[0]['path'] %}
+                <p><img src="{{post_item.featured_images[0]['path']}}" alt="blog_post_{{post_item.id}}" width="100%" /></p>
+            {% endif %}
+            {% set content_parsed = parseBlogPost(post_item.content) %}
+
+            {% if content_parsed %}
+                {% for content in content_parsed %}
+                    {% if content.partial %}
+                        {% partial content.partial %}
+                    {% else %}
+                        {{ content|raw }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </article>
+
+        <!-- SOCIAL ICON AND POST TAGS -->
+        <div class="social-share">
+            <div class="row">
+                <div class="col-sm-13">
+                    <p>
+                        <strong>{{ 'Tags'|_ }}:</strong>
+                        {% for tag in post_item.tags %}
+                            <a href="{{ searchpage|page({'filter': 'tag','slug': tag.slug }) }}/">{{ tag.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col-sm-11">
+                
+                    <div class="social-icons">
+                        {% component 'ssbuttonsssb' %}
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of .social-share -->
+
+        <!-- COMMENTS SECTION -->
+        <section class="comments-area">
+        
+            {% component 'disqus' %}
+        
+        </section> <!-- end of .comments-area -->
+    </div> <!-- end of .blog style one -->
+
+{% put scripts %}
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('pre code').each(function(){
+            $(this).parent().addClass('prettyprint');
+        });
+        prettyPrint();
+    });
+    </script>
+{% endput %}
+
+{% if embedly %}
+    {% put scripts %}
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('.blog-item a').each(function(){
+            if($(this).text() == 'embedly'){
+                $(this).addClass('embedly');
+                var w = $(this).parent().parent().width();
+                $(this).embedly({
+                    key: '{{embedly}}',
+                    query: {
+                        maxwidth: w,
+                    },
+                });
+            }
+            });
+        });
+        </script>
+    {% endput %}
+{% endif %}

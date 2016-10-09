@@ -1,0 +1,22 @@
+description = "Feature Posts"
+
+[proBlogList]
+postsPerPage = 5
+filter_type = "tag"
+filter_value = "feature"
+searchpage = "blog"
+render = "specific"
+specific = "post"
+==
+{% for post in blogPosts %}
+                    <div class="popular-article clearfix">
+                        {% if post.featured_images[0]['path'] %}
+                        <div class="thumb">
+                            <img src="{{post.featured_images[0]['path']}}" alt="blog_post_{{post.id}}"  />
+                        </div>
+                        {% endif %}
+                        <div class="article-link">
+                            <a href="{{ proBlogList.postRender(post.parent)|page({'filter': category_slug, 'slug': post.slug }) }}/">{{ post.title }}</a>
+                        </div>
+                    </div>
+        {% endfor %}

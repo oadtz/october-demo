@@ -1,0 +1,55 @@
+# ===================================
+#  Field Definitions
+# ===================================
+
+tabs:
+    fields:
+
+        blogPost:
+            label: radiantweb.problog::lang.settings.labels.render
+            tab: radiantweb.problog::lang.settings.tabs.render
+            type: dropdown
+            default: none
+
+        defaultParent:
+            label: radiantweb.problog::lang.settings.labels.parent
+            tab: radiantweb.problog::lang.settings.tabs.render
+            type: dropdown
+            default: none
+
+        markdownMode:
+            label: radiantweb.problog::lang.settings.labels.editor
+            tab: radiantweb.problog::lang.settings.tabs.editor
+            type: checkbox
+
+        sharethis:
+            label: radiantweb.problog::lang.settings.labels.sharethis
+            tab: radiantweb.problog::lang.settings.tabs.social
+
+        facebook:
+            label: radiantweb.problog::lang.settings.labels.facebook
+            tab: radiantweb.problog::lang.settings.tabs.social
+            type: checkbox
+
+        twitter:
+            label: radiantweb.problog::lang.settings.labels.twitter
+            tab: radiantweb.problog::lang.settings.tabs.social
+            type: checkbox
+
+        google:
+            label: radiantweb.problog::lang.settings.labels.google
+            tab: radiantweb.problog::lang.settings.tabs.social
+            type: checkbox
+
+        embedly:
+            label: radiantweb.problog::lang.settings.labels.embedly
+            tab: radiantweb.problog::lang.settings.tabs.api
+
+        alchemy:
+            label: radiantweb.problog::lang.settings.labels.alchemy
+            tab: radiantweb.problog::lang.settings.tabs.api
+
+        twitter_auth:
+            label: radiantweb.problog::lang.settings.labels.twitterauth
+            tab: radiantweb.problog::lang.settings.tabs.authentication
+            type: authenticatetwiter

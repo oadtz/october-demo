@@ -1,0 +1,43 @@
+/* GLOBALS */
+a {
+  color: #e74c3c;
+}
+/* BUTTON */
+.btn-prime {
+  background: #e74c3c;
+}
+/* ICONS */
+.social-icons ul li .fa:hover {
+  color: #e74c3c;
+}
+/* CONTENT PROGRESSBAR */
+.progress .progress-bar {
+  background-color: #e74c3c;
+}
+/* NAVIGATION */
+.header .navbar .main-navigation > ul > li a:hover {
+  color: #e74c3c;
+}
+.header .navbar .main-navigation > ul > li > .dropdown-menu li a:hover {
+  background: #e74c3c;
+}
+.header .navbar .main-navigation .navbar-nav .open > a {
+  color: #e74c3c;
+}
+/* BLOG SECTION */
+.blog-item h2.title a:hover {
+  color: #e74c3c;
+}
+/* BLOG COMMENT AREA */
+.comments-area .comments > ul li p a.author:hover,
+.comments-area .comments > ul li p a.reply:hover {
+  color: #e74c3c;
+}
+.comments-area .comment-form .btn-prime:hover {
+  background: #e74c3c;
+}
+/* PAGINATION */
+.navigate-page li:hover,
+.navigate-page li.active {
+  background: #e74c3c;
+}

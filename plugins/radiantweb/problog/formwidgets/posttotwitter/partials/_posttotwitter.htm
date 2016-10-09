@@ -1,0 +1,35 @@
+<br />
+
+<?php if ($twitter_auth_token == ''): ?>
+
+    <div class="callout fade in callout-warning">
+        <div class="content">
+            <p>
+                Please authorize your Twitter account in the
+                <a href="<?= Backend::url('system/settings/update/radiantweb/problog/settings') ?>">ProBlog Settings page</a>
+                to enable this feature.
+            </p>
+        </div>
+    </div>
+
+<?php else: ?>
+
+    <div id="tweet_now">
+        <input
+            type="text"
+            name="<?=$name?>[message]"
+            placeholder="New Blog Post! {{url}} #Twitter #Hashtags"
+            class="form-control twitter_message"
+            style="width: 320px; display: inline-block;" />
+        <a
+            href="javascript:;"
+            data-request="onDoTweet"
+            data-request-data="message: $('.twitter_message').val()"
+            data-request-success="$('#tweet_now').html('<p>Tweet has been posted sucessfully!</p>');"
+            class="btn btn-info"
+            style="display: inline-block;">
+            Tweet Now
+        </a>
+    </div>
+
+<?php endif ?>

@@ -1,0 +1,87 @@
+title = "Article List"
+url = "/:filter?/:slug?/"
+layout = "default"
+is_hidden = 0
+
+[proBlogList]
+postsPerPage = 10
+filter_type = "none"
+searchpage = "blog"
+render = "specific"
+specific = "post"
+==
+<div class="blog-style-two">
+    <div class="row">
+        {% for post in blogPosts %}
+        <div class="col-md-12">
+            <!-- GENERAL BLOG POST -->
+            <article class="blog-item lazyload">
+            	{% set category_slug = '' %}
+                {% set category_name = '' %}
+            	{% for category in proBlogList.categories %}
+                    {% if category.id == post.categories_id %}
+                        {% set category_slug = category.slug %}
+                        {% set category_name = category.name %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if post.featured_images[0]['path'] %}
+                <img src="{{post.featured_images[0]['path']}}" alt="blog_post_{{post.id}}" class="img-responsive content" />
+                {% endif %}
+
+                <header>
+                    <h2 class="title">
+                        <a href="{{ proBlogList.postRender(post.parent)|page({'filter': category_slug, 'slug': post.slug }) }}/">{{ post.title }}</a>
+                    </h2>
+                    <div class="meta-info">
+                        <ul>
+                            <li>
+                                {% set author = getAuthorInfo(post.user_id) %}
+            
+                                <a href="{{ 'blog'|page({ filter: 'author', slug: author.login }) }}">{{ author.login }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ 'blog'|page({ filter: 'category', slug: category_slug }) }}">{{ category_name }}</a>
+                            </li>
+                            <li>{{ post.published_at|date('M d, Y') }}</li>
+                        </ul>
+                    </div>
+                </header>
+
+                <p>
+                {% if post.excerpt %}
+                    {{ post.excerpt }}
+                    <br />
+                    <a href="{{ proBlogList.postRender(post.parent)|page({'filter': category_slug, 'slug': post.slug }) }}/" class="btn btn-prime btn-small">&raquo; {{ 'Read More'|_ }}</a>
+                {% else %}
+                    {{ post.content_html|raw }}
+                {% endif %}
+                </p>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if pagination > 0 %}
+    {{blogPosts.render|raw}}
+    <!-- {% if pagination > 0 %}
+        {% if blogPosts.lastPage > 1 %}
+            <ul class="pagination">
+            {% if blogPosts.currentPage > 1 %}
+                <li><a href="{{ this.page.baseFileName|page() }}?page={{blogPosts.currentPage-1}}">&larr; Prev</a></li>
+            {% endif %}
+
+            {% for page in 1..blogPosts.lastPage %}
+                <li class="{{ blogPosts.currentPage == page ? 'active' : null }}">
+                    <a href="{{ this.page.baseFileName|page() }}?page={{page}}">{{ page }}</a>
+                </li>
+            {% endfor %}
+
+            {% if blogPosts.lastPage > blogPosts.currentPage %}
+                <li><a href="{{ this.page.baseFileName|page() }}?page={{blogPosts.currentPage+1}}">Next &rarr;</a></li>
+            {% endif %}
+            </ul>
+        {% endif %}
+    {% endif %} -->
+{% endif %}

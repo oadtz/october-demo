@@ -1,0 +1,43 @@
+/* GLOBALS */
+a {
+  color: #16a085;
+}
+/* BUTTON */
+.btn-prime {
+  background: #16a085;
+}
+/* ICONS */
+.social-icons ul li .fa:hover {
+  color: #16a085;
+}
+/* CONTENT PROGRESSBAR */
+.progress .progress-bar {
+  background-color: #16a085;
+}
+/* NAVIGATION */
+.header .navbar .main-navigation > ul > li a:hover {
+  color: #16a085;
+}
+.header .navbar .main-navigation > ul > li > .dropdown-menu li a:hover {
+  background: #16a085;
+}
+.header .navbar .main-navigation .navbar-nav .open > a {
+  color: #16a085;
+}
+/* BLOG SECTION */
+.blog-item h2.title a:hover {
+  color: #16a085;
+}
+/* BLOG COMMENT AREA */
+.comments-area .comments > ul li p a.author:hover,
+.comments-area .comments > ul li p a.reply:hover {
+  color: #16a085;
+}
+.comments-area .comment-form .btn-prime:hover {
+  background: #16a085;
+}
+/* PAGINATION */
+.navigate-page li:hover,
+.navigate-page li.active {
+  background: #16a085;
+}

@@ -1,0 +1,77 @@
+@primary_color: #16a085; //Change this color code and compile
+
+
+/* GLOBALS */
+a {
+	color: @primary_color;
+}
+
+/* BUTTON */
+.btn-prime {
+	background: @primary_color;
+}
+
+/* ICONS */
+.social-icons {
+	ul li {
+		.fa:hover {
+			color: @primary_color;
+		}
+	}
+}
+
+/* CONTENT PROGRESSBAR */
+.progress .progress-bar {
+		background-color: @primary_color;
+
+}
+
+/* NAVIGATION */
+.header .navbar .main-navigation {
+	> ul >li {
+		a:hover {
+			color: @primary_color;
+		}
+
+		> .dropdown-menu {
+			li a:hover {
+				background: @primary_color;
+			}
+		}
+	}
+
+	.navbar-nav {
+		.open > a {
+			color: @primary_color;
+		}
+	}
+}
+
+/* BLOG SECTION */
+.blog-item {
+	h2.title a:hover {
+		color: @primary_color;
+	}
+}
+
+/* BLOG COMMENT AREA */
+.comments-area {
+	.comments > ul li {
+		p a.author:hover,
+		p a.reply:hover {
+			color: @primary_color;
+		}
+	}
+
+	.comment-form .btn-prime:hover {
+		background: @primary_color;
+	}
+}
+
+/* PAGINATION */
+.navigate-page li {
+	&:hover,
+	&.active {
+		background: @primary_color;
+	}
+}
