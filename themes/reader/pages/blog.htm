@@ -54,7 +54,7 @@ specific = "post"
                     <br />
                     <a href="{{ proBlogList.postRender(post.parent)|page({'filter': category_slug, 'slug': post.slug }) }}/" class="btn btn-prime btn-small">&raquo; {{ 'Read More'|_ }}</a>
                 {% else %}
-                    {{ post.content_html|raw }}
+                    {{ post.content | raw }}
                 {% endif %}
                 </p>
             </article>
