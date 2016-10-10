@@ -10,12 +10,19 @@ searchpage = "blog"
 render = "specific"
 specific = "post"
 ==
+<?php
+function onEnd()
+{
+    dd($this->blogPosts);
+}
+?>
+==
 <div class="blog-style-two">
-    <div class="row">
-        {% for post in blogPosts %}
-        <div class="col-md-12">
+    <div class="row-mansony">
+        {% for post in blogPosts %} ---
+        <div class="blog col-md-12">
             <!-- GENERAL BLOG POST -->
-            <article class="blog-item lazyload">
+            <article class="blog-item">
             	{% set category_slug = '' %}
                 {% set category_name = '' %}
             	{% for category in proBlogList.categories %}

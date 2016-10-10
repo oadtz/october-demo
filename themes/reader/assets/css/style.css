@@ -1260,6 +1260,24 @@ hr.fullwd {
   color: #a6a6a6;
 }
 
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+
+.row-mansony {
+  -moz-column-width: 20em;
+  -webkit-column-width: 20em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap:1em; 
+}
+
+.blog {
+ display: inline-block;
+ padding: 0;
+ margin: 0;
+ width:  100%; 
+ float: none;
+}
+
 /* GLOBALS */
 a {
   color: #27ae60;
